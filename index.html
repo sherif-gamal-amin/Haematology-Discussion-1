@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Haematology Discussion (1)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            user-select: none; /* يمنع تحديد النص */
+            -webkit-user-select: none; /* لمتصفحات WebKit مثل Chrome وSafari */
+            -moz-user-select: none; /* لمتصفح Firefox */
+            -ms-user-select: none; /* لمتصفح Internet Explorer/Edge */
+        }
+        @media print { /* إخفاء الصفحة عند الطباعة */
+            body { 
+                display: none;
+            }
+        }
+
+        .quiz-container {
+            width: 90%;
+            margin: 20px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #007BFF;
+        }
+        .timer {
+            color: red;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .question {
+            margin-bottom: 20px;
+        }
+        .question p {
+            font-weight: bold;
+        }
+        .options label {
+            display: block;
+            margin: 5px 0;
+        }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+            border-radius: 5px;
+            display: none;
+        }
+        .incorrect {
+            color: red;
+        }
+        .correct {
+            color: green;
+        }
+        .question-result {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        img {
+            pointer-events: none; /* يمنع سحب الصور */
+        }
+    </style>
+</head>
+<body>
+    <div class="quiz-container">
+        <h1>Haematology Discussion (1)</h1>
+        <div class="timer" id="timer">Time remaining: 60 seconds</div>
+
+        <div class="question" id="question-1">
+            <p>1- 30-year-old man is investigated for enlarged, painless cervical lymph nodes. A biopsy is taken and diagnosis of Hodgkin's lymphoma is made. Which one of the following types of Hodgkin's lymphoma carries the best prognosis? </p>
+            <div class="options">
+                <label><input type="radio" name="q1" value="Lymphocyte predominant"> Lymphocyte predominant </label>
+                <label><input type="radio" name="q1" value="Mixed cellularity"> Mixed cellularity </label>
+                <label><input type="radio" name="q1" value="Nodular sclerosing"> Nodular sclerosing </label>
+                <label><input type="radio" name="q1" value="Hairy cell"> Hairy cell </label>
+                <label><input type="radio" name="q1" value="Lymphocyte depleted"> Lymphocyte depleted </label>
+            </div>
+        </div>
+        <div class="question" id="question-2">
+            <p>2-  Which one of the following is the most common type of Hodgkin's lymphoma? </p>
+            <div class="options">
+                <label><input type="radio" name="q2" value="Lymphocyte predominant"> Lymphocyte predominant </label>
+                <label><input type="radio" name="q2" value="Nodular sclerosing"> Nodular sclerosing </label>
+                <label><input type="radio" name="q2" value="Lymphocyte depleted"> Lymphocyte depleted </label>
+                <label><input type="radio" name="q2" value="Mixed cellularity"> Mixed cellularity </label>
+                <label><input type="radio" name="q2" value="Hairy cell"> Hairy cell </label>
+            </div>
+        </div>
+        <div class="question" id="question-3">
+            <p>3- Regarding the Ann-Arbor classification of HodgKin's lymphoma, which one of the following would be staged as IIIB? </p>
+            <div class="options">
+                <label><input type="radio" name="q3" value="Nodes on both sides of diaphragm with pruritus"> Nodes on both sides of diaphragm with pruritus </label>
+                <label><input type="radio" name="q3" value="Two or more lymph nodes on the same side of the diaphragm with pruritus"> Two or more lymph nodes on the same side of the diaphragm with pruritus </label>
+                <label><input type="radio" name="q3" value="Nodes on both sides of diaphragm with night sweats"> Nodes on both sides of diaphragm with night sweats </label>
+                <label><input type="radio" name="q3" value="Two or more lymph nodes on the same side of the diaphragm with night sweats"> Two or more lymph nodes on the same side of the diaphragm with night sweats </label>
+                <label><input type="radio" name="q3" value="Two or more lymph nodes on the same side of the diaphragm with no systemic symptoms"> Two or more lymph nodes on the same side of the diaphragm with no systemic symptoms </label>
+            </div>
+        </div>
+        <div class="question" id="question-4">
+            <p>4- 26 years old female presents with bilateral cervical lymphadenopathy. Lymph node biopsy reveals nodular sclerosing Hodgkin lymphoma. Which one of the following features indicates poor prognosis? </p>
+            <div class="options">
+                <label><input type="radio" name="q4" value="Fatigue"> Fatigue </label>
+                <label><input type="radio" name="q4" value="Night sweats"> Night sweats </label>
+                <label><input type="radio" name="q4" value="Pruritus"> Pruritus </label>
+                <label><input type="radio" name="q4" value="Recent EBV infection"> Recent EBV infection </label>
+            </div>
+        </div>
+        <div class="question" id="question-5">
+            <p>5- Patients with Sjogren's syndrome are at an increased risk of which one of the following malignancies? </p>
+            <div class="options">
+                <label><input type="radio" name="q5" value="Myeloma"> Myeloma </label>
+                <label><input type="radio" name="q5" value="Oesophageal cancer"> Oesophageal cancer </label>
+                <label><input type="radio" name="q5" value="Intraocular melanoma"> Intraocular melanoma </label>
+                <label><input type="radio" name="q5" value="Squamous cell skin cancer"> Squamous cell skin cancer </label>
+                <label><input type="radio" name="q5" value="Non-Hodgkin's lymphoma"> Non-Hodgkin's lymphoma </label>
+            </div>
+        </div>
+        <div class="question" id="question-6">
+            <p>6- BurKitt's lymphoma is associated with a mutation in which one of the following genes? </p>
+            <div class="options">
+                <label><input type="radio" name="q6" value="Cyclin D1 gene"> Cyclin D1 gene </label>
+                <label><input type="radio" name="q6" value="PML gene"> PML gene </label>
+                <label><input type="radio" name="q6" value="BCR-ABL gene"> BCR-ABL gene </label>
+                <label><input type="radio" name="q6" value="RAR-alpha gene"> RAR-alpha gene </label>
+                <label><input type="radio" name="q6" value="MYC gene"> MYC gene </label>
+            </div>
+        </div>
+        <div class="question" id="question-7">
+            <p>7- A 12-year-old, recently-immigrated boy from Nigeria is referred to the hospital after presenting to his GP with a growth of the jaw. A number of investigations are performed, including a test for the Epstein-Barr virus which comes back positive. A biopsy is taken, which demonstrates a 'starry sky' appearance. Given the findings and the likely diagnosis, which of the following translocations is most likely implicated? </p>
+            <div class="options">
+                <label><input type="radio" name="q7" value="T(8:14)"> T(8:14) </label>
+                <label><input type="radio" name="q7" value="T(9:22)"> T(9:22) </label>
+                <label><input type="radio" name="q7" value="T(11:14)"> T(11:14) </label>
+                <label><input type="radio" name="q7" value="T(14:18)"> T(14:18) </label>
+                <label><input type="radio" name="q7" value="T(15:17)"> T(15:17) </label>
+            </div>
+        </div>
+        <div class="question" id="question-8">
+            <p>8- A 65-year-old woman is referred to haematology with unexplained weight loss, tiredness and fevers. On examination she has painless cervical lymphadenopathy. The haematologist suspects follicular lymphoma and organises a lymph node biopsy. Cytogenetics are performed to confirm the diagnosis. Which translocation is likely to be present? </p>
+            <div class="options">
+                <label><input type="radio" name="q8" value="Translocation t(8;14)"> Translocation t(8;14) </label>
+                <label><input type="radio" name="q8" value="Translocation t(9;22)"> Translocation t(9;22) </label>
+                <label><input type="radio" name="q8" value="Translocation t(11;14)"> Translocation t(11;14) </label>
+                <label><input type="radio" name="q8" value="Translocation t(14;18)"> Translocation t(14;18) </label>
+                <label><input type="radio" name="q8" value="Translocation t(15;17)"> Translocation t(15;17) </label>
+            </div>
+        </div>
+        <div class="question" id="question-9">
+            <p>9- Which one of the following haematological malignancies is most commonly associated with the t(11:14) translocation? </p>
+            <div class="options">
+                <label><input type="radio" name="q9" value="Acute promyelocytic leukaemia"> Acute promyelocytic leukaemia </label>
+                <label><input type="radio" name="q9" value="Burkitt's lymphoma"> Burkitt's lymphoma </label>
+                <label><input type="radio" name="q9" value="Acute lymphoblastic leukaemia"> Acute lymphoblastic leukaemia </label>
+                <label><input type="radio" name="q9" value="Mantle cell lymphoma"> Mantle cell lymphoma </label>
+                <label><input type="radio" name="q9" value="Chronic myeloid leukaemia"> Chronic myeloid leukaemia </label>
+            </div>
+        </div>
+        <div class="question" id="question-10">
+            <p>10- A 27-year-old male is receiving cyclophosphamide as part of his chemotherapy for non-Hodgkin lymphoma. What is the most appropriate management to reduce the likelihood of hemorrhagic cystitis? </p>
+            <div class="options">
+                <label><input type="radio" name="q10" value="Hydration + tranexamic acid"> Hydration + tranexamic acid </label>
+                <label><input type="radio" name="q10" value="Hydration + twice-daily bladder washouts"> Hydration + twice-daily bladder washouts </label>
+                <label><input type="radio" name="q10" value="Hydration + prophylactic antibiotics"> Hydration + prophylactic antibiotics </label>
+                <label><input type="radio" name="q10" value="Hydration + twice-daily bladder washouts + prophylactic antibiotics"> Hydration + twice-daily bladder washouts + prophylactic antibiotics </label>
+                <label><input type="radio" name="q10" value="Hydration + mesna"> Hydration + mesna </label>
+            </div>
+        </div>
+        <div class="question" id="question-11">
+            <p>11- What is the mechanism of action of cisplatin? </p>
+            <div class="options">
+                <label><input type="radio" name="q11" value="Stabilises DNA-topoisomerase II complex"> Stabilises DNA-topoisomerase II complex </label>
+                <label><input type="radio" name="q11" value="Causes cross-linking in DNA"> Causes cross-linking in DNA </label>
+                <label><input type="radio" name="q11" value="Inhibits ribonucleotide reductase"> Inhibits ribonucleotide reductase </label>
+                <label><input type="radio" name="q11" value="Inhibits purine synthesis"> Inhibits purine synthesis </label>
+                <label><input type="radio" name="q11" value="Inhibits formation of microtubules"> Inhibits formation of microtubules </label>
+            </div>
+        </div>
+        <div class="question" id="question-12">
+            <p>12- Which electrolyte disturbance is cisplatin most associated with?</p>
+            <div class="options">
+                <label><input type="radio" name="q12" value="Hypocalcaemia"> Hypocalcaemia</label>
+                <label><input type="radio" name="q12" value="Hyponatraemia"> Hyponatraemia</label>
+                <label><input type="radio" name="q12" value="Hypomagnesaemia"> Hypomagnesaemia</label>
+                <label><input type="radio" name="q12" value="Hypokalaemia"> Hypokalaemia</label>
+                <label><input type="radio" name="q12" value="Hypercalcaemia"> Hypercalcaemia</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-13">
+            <p>13- Which of the following cytotoxic agents is most associated with ototoxicity?</p>
+            <div class="options">
+                <label><input type="radio" name="q13" value="Vincristine"> Vincristine</label>
+                <label><input type="radio" name="q13" value="Bleomycin"> Bleomycin</label>
+                <label><input type="radio" name="q13" value="Cisplatin"> Cisplatin</label>
+                <label><input type="radio" name="q13" value="Doxorubicin"> Doxorubicin</label>
+                <label><input type="radio" name="q13" value="Cyclophosphamide"> Cyclophosphamide</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-14">
+            <p>14- A 43-year-old woman is about to start treatment with trastuzumab for metastatic breast cancer. What is the most important investigation to perform prior to initiating treatment?</p>
+            <div class="options">
+                <label><input type="radio" name="q14" value="Pulmonary function tests"> Pulmonary function tests</label>
+                <label><input type="radio" name="q14" value="Echo"> Echo</label>
+                <label><input type="radio" name="q14" value="Liver function tests"> Liver function tests</label>
+                <label><input type="radio" name="q14" value="Chest x-ray"> Chest x-ray</label>
+                <label><input type="radio" name="q14" value="Glucose tolerance test"> Glucose tolerance test</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-15">
+            <p>15- A woman who is about to commence trastuzumab treatment for breast cancer has an echocardiogram. Which class of chemotherapeutic agent would predispose her to developing cardiac dysfunction?</p>
+            <div class="options">
+                <label><input type="radio" name="q15" value="Vinca alkaloids"> Vinca alkaloids</label>
+                <label><input type="radio" name="q15" value="Platinum-based compounds"> Platinum-based compounds</label>
+                <label><input type="radio" name="q15" value="Anthracyclines"> Anthracyclines</label>
+                <label><input type="radio" name="q15" value="Taxanes"> Taxanes</label>
+                <label><input type="radio" name="q15" value="Topoisomerase 1 inhibitors"> Topoisomerase 1 inhibitors</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-16">
+            <p>16- 73-year-old man is prescribed cetuximab being diagnosed with metastatic colorectal cancer. What target is this monoclonal antibody directed against?</p>
+            <div class="options">
+                <label><input type="radio" name="q16" value="Vascular endothelial growth factor receptor"> Vascular endothelial growth factor receptor</label>
+                <label><input type="radio" name="q16" value="Angiopoietin-2 receptors"> Angiopoietin-2 receptors</label>
+                <label><input type="radio" name="q16" value="CD20 protein complex"> CD20 protein complex</label>
+                <label><input type="radio" name="q16" value="Epidermal growth factor receptor"> Epidermal growth factor receptor</label>
+                <label><input type="radio" name="q16" value="Fibroblast growth factor receptor"> Fibroblast growth factor receptor</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-17">
+            <p>17- A patient is due to start chemotherapy for metastatic colorectal cancer. What is the main advantage of using capecitabine instead of fluorouracil?</p>
+            <div class="options">
+                <label><input type="radio" name="q17" value="Current data shows increased survival"> Current data shows increased survival</label>
+                <label><input type="radio" name="q17" value="Less cardiotoxic"> Less cardiotoxic</label>
+                <label><input type="radio" name="q17" value="Oral administration"> Oral administration</label>
+                <label><input type="radio" name="q17" value="Less nausea"> Less nausea</label>
+                <label><input type="radio" name="q17" value="Not renally excreted therefore can be used in patients with chronic kidney disease"> Not renally excreted therefore can be used in patients with chronic kidney disease</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-18">
+            <p>18- A woman is prescribed docetaxel as part of her chemotherapy for breast cancer. What is the mechanism of action of docetaxel?</p>
+            <div class="options">
+                <label><input type="radio" name="q18" value="Inhibits RNA synthesis"> Inhibits RNA synthesis</label>
+                <label><input type="radio" name="q18" value="Stabilizes DNA-topoisomerase II complex"> Stabilizes DNA-topoisomerase II complex</label>
+                <label><input type="radio" name="q18" value="Prevents microtubule disassembly"> Prevents microtubule disassembly</label>
+                <label><input type="radio" name="q18" value="Causes cross-linking in DNA"> Causes cross-linking in DNA</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-19">
+            <p>19- A 45-year-old woman is diagnosed with non-Hodgkin's lymphoma. She is alcoholic and has been left with significant alcohol-related peripheral neuropathy. Which one of the following chemotherapy agents should be avoided if possible given her past history?</p>
+            <div class="options">
+                <label><input type="radio" name="q19" value="Doxorubicin"> Doxorubicin</label>
+                <label><input type="radio" name="q19" value="Vincristine"> Vincristine</label>
+                <label><input type="radio" name="q19" value="Chlorambucil"> Chlorambucil</label>
+                <label><input type="radio" name="q19" value="Docetaxel"> Docetaxel</label>
+                <label><input type="radio" name="q19" value="Cyclophosphamide"> Cyclophosphamide</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-20">
+            <p>20- A 48-year-old female who has just completed a course of chemotherapy complains of difficulty using her hands associated with 'pins and needles'. She has also experienced urinary hesitancy. Which cytotoxic drug is most likely to be responsible?</p>
+            <div class="options">
+                <label><input type="radio" name="q20" value="Doxorubicin"> Doxorubicin</label>
+                <label><input type="radio" name="q20" value="Cyclophosphamide"> Cyclophosphamide</label>
+                <label><input type="radio" name="q20" value="Methotrexate"> Methotrexate</label>
+                <label><input type="radio" name="q20" value="Vincristine"> Vincristine</label>
+                <label><input type="radio" name="q20" value="Bleomycin"> Bleomycin</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-21">
+            <p>21- Which one of the following cytotoxic agents acts by inhibiting dihydrofolate reductase and thymidylate synthesis?</p>
+            <div class="options">
+                <label><input type="radio" name="q21" value="Methotrexate"> Methotrexate</label>
+                <label><input type="radio" name="q21" value="Vincristine"> Vincristine</label>
+                <label><input type="radio" name="q21" value="Bleomycin"> Bleomycin</label>
+                <label><input type="radio" name="q21" value="Cyclophosphamide"> Cyclophosphamide</label>
+                <label><input type="radio" name="q21" value="Doxorubicin"> Doxorubicin</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-22">
+            <p>22- A 34-year-old man who is HIV positive is starting treatment for Burkitt's lymphoma. His chemotherapy regime includes cyclophosphamide, vincristine, methotrexate and prednisolone. Around 24 hours after starting chemotherapy he becomes confused and complains of muscle cramps in his legs. Which one of the following is most likely to have occurred?</p>
+            <div class="options">
+                <label><input type="radio" name="q22" value="Prednisolone-induced psychosis"> Prednisolone-induced psychosis</label>
+                <label><input type="radio" name="q22" value="Hyperuricaemia"> Hyperuricaemia</label>
+                <label><input type="radio" name="q22" value="Methotrexate pneumonitis leading to hypoxia"> Methotrexate pneumonitis leading to hypoxia</label>
+                <label><input type="radio" name="q22" value="Hemorrhagic cystitis leading to acute renal failure"> Hemorrhagic cystitis leading to acute renal failure</label>
+                <label><input type="radio" name="q22" value="Tumour lysis syndrome"> Tumour lysis syndrome</label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-23">
+            <p>23- A 45-year-old who was initially investigated for having an abdominal mass is diagnosed as having Burkitt's lymphoma. He is due to start chemotherapy today. Which one of the following should be given prior to his chemotherapy to reduce the risk of tumour lysis syndrome?</p>
+            <div class="options">
+                <label><input type="radio" name="q23" value="Rasburicase"> Rasburicase</label>
+                <label><input type="radio" name="q23" value="Allopurinol"> Allopurinol</label>
+                <label><input type="radio" name="q23" value="Sodium bicarbonate"> Sodium bicarbonate</label>
+                <label><input type="radio" name="q23" value="Albumin"> Albumin</label>
+                <label><input type="radio" name="q23" value="Calcium gluconate"> Calcium gluconate</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-24">
+            <p>24- A 54-year-old man who is about to start chemotherapy for a high-grade lymphoma is given intravenous rasburicase to help lower the risk of tumour lysis syndrome. What is the mechanism of action of this drug?</p>
+            <div class="options">
+                <label><input type="radio" name="q24" value="Inhibits urate oxidase"> Inhibits urate oxidase</label>
+                <label><input type="radio" name="q24" value="Converts uric acid to allantoin"> Converts uric acid to allantoin</label>
+                <label><input type="radio" name="q24" value="Inhibits xanthine oxidase"> Inhibits xanthine oxidase</label>
+                <label><input type="radio" name="q24" value="Converts uric acid to hypoxanthine"> Converts uric acid to hypoxanthine</label>
+                <label><input type="radio" name="q24" value="Guanylic oxidase inhibitor"> Guanylic oxidase inhibitor</label>
+            </div>
+        </div>
+        <div class="question" id="question-25">
+            <p>25- Which one of the following may be used to monitor patients with colorectal cancer?</p>
+            <div class="options">
+                <label><input type="radio" name="q25" value="CA-125"> CA-125</label>
+                <label><input type="radio" name="q25" value="Carcinoembryonic antigen"> Carcinoembryonic antigen</label>
+                <label><input type="radio" name="q25" value="Alpha-fetoprotein"> Alpha-fetoprotein</label>
+                <label><input type="radio" name="q25" value="CA 19-9"> CA 19-9</label>
+                <label><input type="radio" name="q25" value="CA 15-3"> CA 15-3</label>
+            </div>
+        </div>
+        <div class="question" id="question-26">
+            <p>26- A 58-year-old man is being reviewed in clinic. Six months ago he had a Whipple procedure for pancreatic cancer and is currently undergoing chemotherapy. Which one of the following blood tests is most useful in monitoring his disease?</p>
+            <div class="options">
+                <label><input type="radio" name="q26" value="CA 15-3 levels"> CA 15-3 levels</label>
+                <label><input type="radio" name="q26" value="Faecal elastase"> Faecal elastase</label>
+                <label><input type="radio" name="q26" value="CA 125 levels"> CA 125 levels</label>
+                <label><input type="radio" name="q26" value="Amylase levels"> Amylase levels</label>
+                <label><input type="radio" name="q26" value="CA 19-9 levels"> CA 19-9 levels</label>
+            </div>
+        </div>
+        <div class="question" id="question-27">
+            <p>27- A 49-year-old female is admitted to hospital due to shortness of breath and pleuritic chest pain. She also complains of a marked decrease in appetite for the past 4 months. On admission chest x-ray shows a right-sided pleural effusion. An underlying malignancy is suspected and a series of tumour markers are requested:
+                <br>CA 19-9   35 u/ml ( < 40) 
+                <br>CA 125     654 u/ml (< 30) 
+                <br>CA 15-3   9 u/ml ( <40) 
+                <br>What is the most likely underlying diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q27" value="Ovarian fibroma"> Ovarian fibroma</label>
+                <label><input type="radio" name="q27" value="Small cell lung cancer"> Small cell lung cancer</label>
+                <label><input type="radio" name="q27" value="Pancreatic carcinoma"> Pancreatic carcinoma</label>
+                <label><input type="radio" name="q27" value="Hepatocellular cancer"> Hepatocellular cancer</label>
+                <label><input type="radio" name="q27" value="Breast carcinoma"> Breast carcinoma</label>
+            </div>
+        </div>
+        <div class="question" id="question-28">
+            <p>28- A 67-year-old woman is reviewed 6 months after she had a mastectomy following a diagnosis of breast cancer. Which one of the following tumour markers is most useful in monitoring her disease?</p>
+            <div class="options">
+                <label><input type="radio" name="q28" value="CA 125"> CA 125</label>
+                <label><input type="radio" name="q28" value="CD 34"> CD 34</label>
+                <label><input type="radio" name="q28" value="CA 15-3"> CA 15-3</label>
+                <label><input type="radio" name="q28" value="CA 19-9"> CA 19-9</label>
+                <label><input type="radio" name="q28" value="CD 117"> CD 117</label>
+            </div>
+        </div>
+        <div class="question" id="question-29">
+            <p>29- A 61-year-old presents for review. She has been having atypical lower back pain for the past two months. An x-ray of her lumbar spine reported raised the possibility of spinal metastases but there is no current evidence of a primary tumour. A series of tumour markers were sent. Which one of the following is most associated with raised levels of CA 15-3?</p>
+            <div class="options">
+                <label><input type="radio" name="q29" value="Pancreatic cancer"> Pancreatic cancer</label>
+                <label><input type="radio" name="q29" value="Colorectal cancer"> Colorectal cancer</label>
+                <label><input type="radio" name="q29" value="Breast cancer"> Breast cancer</label>
+                <label><input type="radio" name="q29" value="Ovarian cancer"> Ovarian cancer</label>
+                <label><input type="radio" name="q29" value="Hepatocellular carcinoma"> Hepatocellular carcinoma</label>
+            </div>
+        </div>
+        <div class="question" id="question-30">
+            <p>30- A 69-year-old male patient presents to the oncology clinic with a 3-months history of right upper quadrant discomfort, weight loss and anorexia. Ultrasound liver raises the suspicion of a hepatocellular carcinoma. Which carcinogen had he likely been exposed to?</p>
+            <div class="options">
+                <label><input type="radio" name="q30" value="Nitrosamine"> Nitrosamine</label>
+                <label><input type="radio" name="q30" value="Aflatoxin"> Aflatoxin</label>
+                <label><input type="radio" name="q30" value="Aniline dye"> Aniline dye</label>
+                <label><input type="radio" name="q30" value="Arsenic"> Arsenic</label>
+                <label><input type="radio" name="q30" value="Benzene"> Benzene</label>
+            </div>
+        </div>
+        <div class="question" id="question-31">
+            <p>31- Which one of the following is least associated with hepatocellular carcinoma?</p>
+            <div class="options">
+                <label><input type="radio" name="q31" value="Hepatitis C"> Hepatitis C</label>
+                <label><input type="radio" name="q31" value="Primary biliary cirrhosis"> Primary biliary cirrhosis</label>
+                <label><input type="radio" name="q31" value="Aflatoxin"> Aflatoxin</label>
+                <label><input type="radio" name="q31" value="Wilson's disease"> Wilson's disease</label>
+                <label><input type="radio" name="q31" value="Haemochromatosis"> Haemochromatosis</label>
+            </div>
+        </div>
+        <div class="question" id="question-32">
+            <p>32- A 34-year-old man is reviewed four years after having an orchiectomy for a testicular teratoma. What are the most useful follow-up investigation(s) to detect disease recurrence?</p>
+            <div class="options">
+                <label><input type="radio" name="q32" value="CRP + beta-HCG"> CRP + beta-HCG</label>
+                <label><input type="radio" name="q32" value="Testosterone + beta-HCG"> Testosterone + beta-HCG</label>
+                <label><input type="radio" name="q32" value="ESR + alpha-fetoprotein"> ESR + alpha-fetoprotein</label>
+                <label><input type="radio" name="q32" value="Alpha-fetoprotein + beta-HCG"> Alpha-fetoprotein + beta-HCG</label>
+                <label><input type="radio" name="q32" value="LDH + ESR"> LDH + ESR</label>
+            </div>
+        </div>
+        <div class="question" id="question-33">
+            <p>33- A 62-year-old man is called for review after a positive faecal occult blood test done as part of the national screening programme. During counselling for colonoscopy he asks what percentage of patients with a positive faecal occult blood test have colorectal cancer. What is the most accurate answer?</p>
+            <div class="options">
+                <label><input type="radio" name="q33" value="0.5 - 2%"> 0.5 - 2%</label>
+                <label><input type="radio" name="q33" value="5 -15%"> 5 -15%</label>
+                <label><input type="radio" name="q33" value="20 -30%"> 20 -30%</label>
+                <label><input type="radio" name="q33" value="30 -50%"> 30 -50%</label>
+                <label><input type="radio" name="q33" value="55 -75%"> 55 -75%</label>
+            </div>
+        </div>
+        <div class="question" id="question-34">
+            <p>34- A 61-year-old woman is investigated for hoarseness and dyspnoea which has got progressively worse over the past month. In the past she has been diagnosed with toxic multinodular goitre which was successfully treated with radioiodine. On examination she has a firm asymmetrical swelling of the thyroid gland. Laryngoscopy demonstrates a right vocal cord paralysis and apparent external compression of the trachea. What is the most likely diagnosis?</p>
+            <div class="options">
+                <label><input type="radio" name="q34" value="Follicular thyroid cancer"> Follicular thyroid cancer</label>
+                <label><input type="radio" name="q34" value="Papillary thyroid cancer"> Papillary thyroid cancer</label>
+                <label><input type="radio" name="q34" value="Medullary thyroid cancer"> Medullary thyroid cancer</label>
+                <label><input type="radio" name="q34" value="Lymphoma of the thyroid gland"> Lymphoma of the thyroid gland</label>
+                <label><input type="radio" name="q34" value="Anaplastic thyroid cancer"> Anaplastic thyroid cancer</label>
+            </div>
+        </div>
+        <div class="question" id="question-35">
+            <p>35- Which one of the following ethnic groups have an increased incidence of prostate cancer?</p>
+            <div class="options">
+                <label><input type="radio" name="q35" value="Afro-Caribbean"> Afro-Caribbean</label>
+                <label><input type="radio" name="q35" value="Ashkenazi Jews"> Ashkenazi Jews</label>
+                <label><input type="radio" name="q35" value="Chinese"> Chinese</label>
+                <label><input type="radio" name="q35" value="Indian subcontinent"> Indian subcontinent</label>
+                <label><input type="radio" name="q35" value="White"> White</label>
+            </div>
+        </div>
+
+        <div class="question" id="question-36">
+            <p> 36- A 67-year-old man with a 10-year history of gastro-oesophageal reflux disease is investigated for dysphagia. An endoscopy shows an obstructive lesion highly suspicious of esophageal cancer. What is the biopsy most likely to show? </p>
+            <div class="options">
+                <label><input type="radio" name="q36" value="Squamous cell carcinoma"> Squamous cell carcinoma </label>
+                <label><input type="radio" name="q36" value="Normal squamous epithelium"> Normal squamous epithelium </label>
+                <label><input type="radio" name="q36" value="Adenocarcinoma"> Adenocarcinoma </label>
+                <label><input type="radio" name="q36" value="Leiomyoma"> Leiomyoma </label>
+                <label><input type="radio" name="q36" value="Metaplastic columnar epithelium"> Metaplastic columnar epithelium </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-37">
+            <p> 37- A patient presents as she has a strong family history of cancer. Which one of the following cancers is least likely to be inherited? </p>
+            <div class="options">
+                <label><input type="radio" name="q37" value="Colorectal cancer"> Colorectal cancer </label>
+                <label><input type="radio" name="q37" value="Breast cancer"> Breast cancer </label>
+                <label><input type="radio" name="q37" value="Gastric cancer"> Gastric cancer </label>
+                <label><input type="radio" name="q37" value="Endometrial cancer"> Endometrial cancer </label>
+                <label><input type="radio" name="q37" value="Ovarian cancer"> Ovarian cancer </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-38">
+            <p> 38- A 67-year-old man is investigated for dyspepsia. A gastroscopy reveals a suspicious lesion which is biopsied. Which one of the following findings on biopsy would be most consistent with a diagnosis of gastric adenocarcinoma? </p>
+            <div class="options">
+                <label><input type="radio" name="q38" value="Columnar metaplasia"> Columnar metaplasia </label>
+                <label><input type="radio" name="q38" value="Histiocytic infiltration"> Histiocytic infiltration </label>
+                <label><input type="radio" name="q38" value="Paneth cell metaplasia"> Paneth cell metaplasia </label>
+                <label><input type="radio" name="q38" value="Giant cell granulomas"> Giant cell granulomas </label>
+                <label><input type="radio" name="q38" value="Signet ring cells"> Signet ring cells </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-39">
+            <p> 39- Virchow's node receives lymphatics from all EXCEPT .. </p>
+            <div class="options">
+                <label><input type="radio" name="q39" value="Testes"> Testes </label>
+                <label><input type="radio" name="q39" value="Stomach"> Stomach </label>
+                <label><input type="radio" name="q39" value="Prostate"> Prostate </label>
+                <label><input type="radio" name="q39" value="Breast"> Breast </label>
+                <label><input type="radio" name="q39" value="Kidney"> Kidney </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-40">
+            <p> 40- A 54-year-old man is investigated for a chronic cough. A chest x-ray arranged by his GP shows a suspicious lesion in the right lung. He has no past history of note and is a life-long non-smoker. An urgent bronchoscopy is arranged which is normal. What is the most likely diagnosis? </p>
+            <div class="options">
+                <label><input type="radio" name="q40" value="Lung sarcoma"> Lung sarcoma </label>
+                <label><input type="radio" name="q40" value="Squamous cell lung cancer"> Squamous cell lung cancer </label>
+                <label><input type="radio" name="q40" value="Lung adenocarcinoma"> Lung adenocarcinoma </label>
+                <label><input type="radio" name="q40" value="Small cell lung cancer"> Small cell lung cancer </label>
+                <label><input type="radio" name="q40" value="Lung carcinoid"> Lung carcinoid </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-41">
+            <p> 41- Which one of the following factors is most associated with an increased risk of developing bladder cancer? </p>
+            <div class="options">
+                <label><input type="radio" name="q41" value="Strongyloides stercoralis infection"> Strongyloides stercoralis infection </label>
+                <label><input type="radio" name="q41" value="Beryllium salt exposure"> Beryllium salt exposure </label>
+                <label><input type="radio" name="q41" value="Aniline dye exposure"> Aniline dye exposure </label>
+                <label><input type="radio" name="q41" value="Aflatoxin exposure"> Aflatoxin exposure </label>
+                <label><input type="radio" name="q41" value="Long term phenytoin use"> Long term phenytoin use </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-42">
+            <p> 42- Which one of the following is not a risk factor for the development of bladder cancer? </p>
+            <div class="options">
+                <label><input type="radio" name="q42" value="Occupational exposure to aniline dyes"> Occupational exposure to aniline dyes </label>
+                <label><input type="radio" name="q42" value="Cyclophosphamide"> Cyclophosphamide </label>
+                <label><input type="radio" name="q42" value="Strongyloides infection"> Strongyloides infection </label>
+                <label><input type="radio" name="q42" value="Smoking"> Smoking </label>
+                <label><input type="radio" name="q42" value="Occupational history involving rubber manufacture"> Occupational history involving rubber manufacture </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-43">
+            <p> 43- Which one of the following viruses is associated with nasopharyngeal carcinoma? </p>
+            <div class="options">
+                <label><input type="radio" name="q43" value="Adenovirus"> Adenovirus </label>
+                <label><input type="radio" name="q43" value="Rhinovirus"> Rhinovirus </label>
+                <label><input type="radio" name="q43" value="Herpes simplex virus"> Herpes simplex virus </label>
+                <label><input type="radio" name="q43" value="Epstein-Barr virus"> Epstein-Barr virus </label>
+                <label><input type="radio" name="q43" value="Picornavirus"> Picornavirus </label>
+            </div>
+        </div>
+        
+        <div class="question" id="question-44">
+            <p> 44- Which one of the following malignancies may be associated with HTLV-1? </p>
+            <div class="options">
+                <label><input type="radio" name="q44" value="Adult T-cell leukaemia"> Adult T-cell leukaemia </label>
+                <label><input type="radio" name="q44" value="Colorectal cancer"> Colorectal cancer </label>
+                <label><input type="radio" name="q44" value="Burkitt's lymphoma"> Burkitt's lymphoma </label>
+                <label><input type="radio" name="q44" value="Medullary thyroid cancer"> Medullary thyroid cancer </label>
+                <label><input type="radio" name="q44" value="Breast cancer"> Breast cancer </label>
+            </div>
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()">Next Question</button>
+        <button class="btn" id="submitBtn" onclick="evaluateQuiz()" style="display: none;">Submit Quiz</button>
+
+        <div class="result" id="result">
+            <h2>Results</h2>
+            <div id="score"></div>
+            <div id="answers-summary"></div>
+        </div>
+    </div>
+
+    <script>
+        // إضافة حدث للكيبورد لمنع حفظ الصفحة
+        document.addEventListener("keydown", function (event) {
+            if (event.ctrlKey && event.key === "s") {
+                event.preventDefault();
+                alert("تم منع حفظ الصفحة!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع فتح أدوات المطور
+        document.addEventListener("keydown", function (event) {
+            if (event.key === "F12" || (event.ctrlKey && event.shiftKey && event.key === "I")) {
+                event.preventDefault();
+                alert("تم تعطيل أدوات المطور!");
+            }
+        });
+
+        // إضافة حدث للكيبورد لمنع النقر بزر اليمين
+        document.addEventListener('contextmenu', function(event) {
+            event.preventDefault(); // يمنع فتح قائمة السياق
+            alert("النقر بزر الماوس الأيمن غير مسموح به.");
+        });
+
+        let currentQuestion = 1;
+        const totalQuestions = 44;
+        let score = 0;
+        let timerInterval;
+        const answers = {
+            q1: "Lymphocyte predominant",
+            q2: "Nodular sclerosing",
+            q3: "Nodes on both sides of diaphragm with night sweats",
+            q4: "Night sweats",
+            q5: "Non-Hodgkin's lymphoma",
+            q6: "MYC gene",
+            q7: "T(8:14)",
+            q8: "Translocation t(14;18)",
+            q9: "Mantle cell lymphoma",
+            q10: "Hydration + mesna",
+            q11: "Causes cross-linking in DNA",
+            q12: "Hypomagnesaemia",
+            q13: "Cisplatin",
+            q14: "Echo",
+            q15: "Anthracyclines",
+            q16: "Epidermal growth factor receptor",
+            q17: "Oral administration",
+            q18: "Prevents microtubule disassembly",
+            q19: "Vincristine",
+            q20: "Vincristine",
+            q21: "Methotrexate",
+            q22: "Tumour lysis syndrome",
+            q23: "Rasburicase",
+            q24: "Converts uric acid to allantoin",
+            q25: "Carcinoembryonic antigen",
+            q26: "CA 19-9 levels",
+            q27: "Ovarian fibroma",
+            q28: "CA 15-3",
+            q29: "Breast cancer",
+            q30: "Aflatoxin",
+            q31: "Wilson's disease",
+            q32: "Alpha-fetoprotein + beta-HCG",
+            q33: "5 -15%",
+            q34: "Anaplastic thyroid cancer",
+            q35: "Afro-Caribbean",
+            q36: "Adenocarcinoma",
+            q37: "Gastric cancer",
+            q38: "Signet ring cells",
+            q39: "Prostate",
+            q40: "Lung adenocarcinoma",
+            q41: "Aniline dye exposure",
+            q42: "Strongyloides infection",
+            q43: "Epstein-Barr virus",
+            q44: "Adult T-cell leukaemia"
+        };
+
+        function showQuestion() {
+            document.querySelectorAll('.question').forEach((q, index) => {
+                q .style.display = index + 1 === currentQuestion ? 'block' : 'none';
+            });
+            document.getElementById('nextBtn').style.display = currentQuestion < totalQuestions ? 'block' : 'none';
+            document.getElementById('submitBtn').style.display = currentQuestion === totalQuestions ? 'block' : 'none';
+        }
+
+        function nextQuestion() {
+            currentQuestion++;
+            clearInterval(timerInterval);
+            startTimer();
+            showQuestion();
+        }
+
+        function startTimer() {
+            let timeRemaining = 60;
+            document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                document.getElementById('timer').textContent = `Time remaining: ${timeRemaining} seconds`;
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    if (currentQuestion < totalQuestions) {
+                        nextQuestion();
+                    } else {
+                        evaluateQuiz();
+                    }
+                }
+            }, 1000);
+        }
+
+        function evaluateQuiz() {
+            score = 0;
+            let summary = '';
+
+            for (let i = 1; i <= totalQuestions; i++) {
+                const selectedOption = document.querySelector(`input[name="q${i}"]:checked`);
+                const correctAnswer = answers[`q${i}`];
+                const questionElement = document.getElementById(`question-${i}`);
+                const options = document.querySelectorAll(`input[name="q${i}"]`);
+                let questionSummary = `<p><strong>Question ${i}: </strong>${questionElement.querySelector('p').innerText}</p>`;
+
+                options.forEach(option => {
+                    const optionLabel = option.parentElement;
+                    if (option.value === correctAnswer) {
+                        optionLabel.style.color = 'green';
+                    } else if (selectedOption && selectedOption.value === option.value) {
+                        optionLabel.style.color = 'red';
+                    }
+                });
+
+                questionSummary += `<div>Answer: <strong>${selectedOption ? selectedOption.value : 'None selected'}</strong></div>`;
+                questionSummary += `<div>Correct answer: <strong>${correctAnswer}</strong></div>`;
+
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    score++;
+                    summary += questionSummary + `<p class="correct">Correct</p>`;
+                } else {
+                    summary += questionSummary + `<p class="incorrect">Incorrect</p>`;
+                }
+            }
+
+            document.getElementById('score').textContent = `Your score: ${score} out of ${totalQuestions}`;
+            document.getElementById('answers-summary').innerHTML = summary;
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('timer').style.display = 'none'; 
+            document.querySelectorAll('.question').forEach((q) => q.style.display = 'none');
+
+            clearInterval(timerInterval);
+        }
+
+        window.onload = function() {
+            showQuestion();
+            startTimer();
+        };
+        
+        
+        function nextQuestion() {
+    // Increase the current question counter
+            currentQuestion++;
+
+            // Reset the timer
+            clearInterval(timerInterval); // Stop the current timer
+            startTimer(); // Start the timer from the beginning
+
+            // Show the next question
+            showQuestion();
+        }
+        
+    </script>
+</body>
+</html>
